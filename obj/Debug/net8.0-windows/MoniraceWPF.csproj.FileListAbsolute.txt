@@ -1,0 +1,6 @@
+C:\Users\Utente01\Documents\Monidoor_V2\obj\Debug\net8.0-windows\MoniraceWPF.csproj.AssemblyReference.cache
+C:\Users\Utente01\Documents\Monidoor_V2\obj\Debug\net8.0-windows\MoniraceWPF_Content.g.cs
+C:\Users\Utente01\Documents\Monidoor_V2\obj\Debug\net8.0-windows\MoniraceWPF_MarkupCompile.cache
+C:\Users\Utente01\Documents\Monidoor_V2\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Utente01\Documents\Monidoor_V2\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Utente01\Documents\Monidoor_V2\obj\Debug\net8.0-windows\MoniraceWPF_MarkupCompile.lref
