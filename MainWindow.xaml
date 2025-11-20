@@ -81,49 +81,43 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="Button" x:Key="BackButtonStyle">
-            <Setter Property="Width" Value="35"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="{StaticResource MoniraceRed}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextLight}"/>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextLight}"/>
+        <Style TargetType="Button" x:Key="LaunchButtonStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource MoniraceBlue}"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Content" Value="&#x21BA;"/>
-            
-            <Setter Property="Panel.ZIndex" Value="10"/>
-            
+            <Setter Property="Padding" Value="15,10"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource MoniraceBlue}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="17.5" Effect="{TemplateBinding Effect}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="{StaticResource MoniraceRedColor}" ShadowDepth="0" BlurRadius="10" Opacity="0.7"/>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
+             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{StaticResource MoniraceBlue}"/>
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="{StaticResource MoniraceBlueColor}" ShadowDepth="0" BlurRadius="10" Opacity="0.7"/>
-                        </Setter.Value>
-                    </Setter>
+                    <Setter Property="Foreground" Value="White"/>
                 </Trigger>
+                 <Trigger Property="IsEnabled" Value="False">
+                     <Setter Property="Opacity" Value="0.3"/>
+                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <LinearGradientBrush x:Key="SeparatorGradient" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="Transparent" Offset="0"/>
+            <GradientStop Color="#444444" Offset="0.5"/>
+            <GradientStop Color="Transparent" Offset="1"/>
+        </LinearGradientBrush>
     
     </Window.Resources>
 
