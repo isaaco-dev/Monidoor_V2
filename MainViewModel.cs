@@ -116,10 +116,10 @@ namespace MoniraceWPF
         private void UpdateAppExclusivity()
         {
             // Forziamo il refresh delle proprietà IsDisabledTop/Bottom su tutti gli elementi
+            // usando il nuovo metodo pubblico sicuro.
             foreach (var app in AppList)
             {
-                app.OnPropertyChanged(nameof(AppModel.IsDisabledTop));
-                app.OnPropertyChanged(nameof(AppModel.IsDisabledBottom));
+                app.RefreshExclusivity();
             }
         }
         

@@ -43,9 +43,17 @@ namespace MoniraceWPF
             }
         }
 
-        // Proprietà per la disabilitazione (logica di esclusività: disabilitato se selezionato nell'altro slot)
         public bool IsDisabledTop => IsSelectedBottom;
         public bool IsDisabledBottom => IsSelectedTop;
+
+        // *** NUOVO METODO PUBBLICO ***
+        // Questo metodo permette al ViewModel di forzare l'aggiornamento visivo
+        // senza dover accedere direttamente a OnPropertyChanged.
+        public void RefreshExclusivity()
+        {
+            OnPropertyChanged(nameof(IsDisabledTop));
+            OnPropertyChanged(nameof(IsDisabledBottom));
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

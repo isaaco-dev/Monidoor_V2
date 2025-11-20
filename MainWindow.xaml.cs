@@ -1,28 +1,32 @@
-using System.Windows.Data;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
-using System.Linq;
+using System;
+using System.Globalization;
 
 namespace MoniraceWPF
 {
-    // Aggiungere un converter helper per la TextDecoration (opzionale ma consigliato per la fedeltà grafica)
+    // Converter migliorato: non dipende più dall'istanza della Window
     public class StatusPenConverter : IValueConverter
     {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var vm = ((Window)Application.Current.MainWindow).DataContext as MainViewModel;
-            if (vm == null) return Brushes.White;
+            string status = value as string;
+            if (string.IsNullOrEmpty(status)) return Brushes.White;
 
-            if (value.ToString().Contains("GO!")) return vm.AppList.Select(a => (SolidColorBrush)Application.Current.Resources["MoniraceBlue"]).FirstOrDefault();
-            if (value.ToString().Contains("BOTTOM:")) return vm.AppList.Select(a => (SolidColorBrush)Application.Current.Resources["MoniraceRed"]).FirstOrDefault();
+            // Recupera le risorse in modo sicuro
+            var blueBrush = Application.Current.Resources["MoniraceBlue"] as SolidColorBrush ?? Brushes.Cyan;
+            var redBrush = Application.Current.Resources["MoniraceRed"] as SolidColorBrush ?? Brushes.Red;
+
+            if (status.Contains("GO!")) return blueBrush;
+            if (status.Contains("BOTTOM:")) return redBrush;
 
             return Brushes.White;
         }
 
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 
@@ -30,19 +34,10 @@ namespace MoniraceWPF
     {
         public MainWindow()
         {
-            // Aggiungere StatusPenConverter alle risorse se non fatto in XAML
-            if (!Application.Current.Resources.Contains("StatusPenConverter"))
-            {
-                 Application.Current.Resources.Add("StatusPenConverter", new StatusPenConverter());
-            }
-
             InitializeComponent();
-            
-            // Imposta il DataContext al ViewModel
+            // Il DataContext è ora impostato qui, ma le risorse globali (come il converter) 
+            // dovrebbero idealmente stare in App.xaml per pulizia.
             DataContext = new MainViewModel();
-
-            // L'inizializzazione di WebView2 (EnsureCoreWebView2Async) non è strettamente necessaria qui 
-            // se si usa solo l'attributo Source.
         }
     }
 }
